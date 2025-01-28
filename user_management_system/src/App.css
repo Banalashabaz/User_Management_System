@@ -1,0 +1,139 @@
+.App {
+  text-align: center;
+  background-color: #385170;
+  height: 200vh;
+  margin: 0;
+  padding-top: 50px;
+  color: white;
+}
+.head{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap; 
+  font-size: x-large;
+  border: 2px solid black;
+  margin-right: 50px;
+  margin-left: 50px;
+  padding: 10px;
+  border-radius: 10px;
+}
+.content{
+  margin-top: 5px;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;  
+  border: 2px solid black;
+  margin-right: 50px;
+  margin-left: 50px;
+  padding: 10px;
+  font-size: larger;
+  text-align: left;
+  border-radius: 10px;
+
+}
+.content span{
+  /* background-color: aqua; */
+  width: 200px;
+}
+.update , .delete{
+  padding: 10px;
+}
+.update{
+  background-color: #53a8b6;
+  border: none;
+  border-radius: 12px;
+  color: antiquewhite;
+transition:  transform 0.2s linear;
+cursor: pointer;
+width:50px;
+/* font-size: large;
+width: 90px;
+height: 50px; */
+
+}
+.delete{
+  background-color: orangered;
+  border: none;
+  border-radius: 8px;
+  color: antiquewhite;
+transition:  transform 0.2s linear;
+cursor: pointer;
+padding: 12px;
+margin-left: 10px;
+font-size: medium;
+}
+form{
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+input{
+  height: 40px;
+  outline: none;
+  width:250px;
+border-radius: 7px;
+margin-right: 20px;
+border: none;
+padding-left: 30px;
+
+}
+
+.submit{
+ height: 40px;
+ /* width: 100px; */
+ /* font-size: medium; */
+ border: none;
+ padding: 10px;
+ margin-right: 10px;
+position: relative;
+top:1px;
+border-radius: 12px;
+background-color: #a2c11c;
+transition:  transform 0.2s linear;
+cursor: pointer;
+color: white;
+width: 100px;
+}
+
+.submit:hover{
+transform: scale(1.12);
+box-shadow: 0px 0px 20px green;
+}
+
+.update:hover{
+  transform: scale(1.12);
+box-shadow: 0px 0px 10px skyblue;
+}
+.delete:hover{
+  transform: scale(1.12);
+  box-shadow: 0px 0px 10px red;
+}
+
+form{
+  margin-bottom: 50px;
+}
+
+#table{
+  display: flex;
+  justify-content: center;
+}
+
+tr:nth-child(even){
+  background-color: grey;
+}
+tr,td{
+  border: 2px solid black;
+  width: max-content;
+  padding: 10px;
+}
+.updateform {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 400px;
+  align-items: center;
+  background-color: #343824;
+  width:35vw;
+   margin-left: 32%;
+   border-radius: 20px;
+}
