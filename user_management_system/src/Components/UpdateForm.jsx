@@ -8,12 +8,22 @@ export default function UpdateForm() {
         const [data,setData]=useState([]);
         const {id}=useParams();
         console.log(form.emailId,'form')
+
+
+        const result=data.filter((y)=>y.id==id);
+console.log('result ',result)
+const uid=result.map((x)=>x.id)
+ const fname=result.map((x)=>x.first_name)
+ const lname=result.map((x)=>x.last_name)
+ const email=result.map((x)=>x.email)
+ const phone=result.map((x)=>x.phone)
         function handlechange(e){
             e.preventDefault();
             formdata.push(form)
             console.log(formdata);
-            axios.post('http://localhost:4000/',form)
-            console.log(form,'form')
+            axios.put(`http://localhost:4000/update-user/${uid}`,form)
+            console.log(form,'form data');
+            alert('Data Updated Succesfully .......')
         }
            useEffect(()=>{
                fetch('http://localhost:4000/').then((res)=>res.json()).then((data)=>setData(data)).catch((err)=>console.log(err))
@@ -21,31 +31,25 @@ export default function UpdateForm() {
             console.log(data,'updated Data',id)
  
 
-const result=data.filter((y)=>y.id==id);
-console.log('result ',result)
-const uid=result.map((x)=>x.id)
- const fname=result.map((x)=>x.first_name)
- const lname=result.map((x)=>x.last_name)
- const email=result.map((x)=>x.email)
- const phone=result.map((x)=>x.phone)
+
 
    
 
-           const handleUpdate = async () => {
+          //  const handleUpdate = async () => {
         
         
-            try {
-              const response = await axios.put(`http://localhost:4000/update-user/${uid}`, {
-                uid,
-                fname,
-                lname,
-                email,
-                phone
-              });
-            } catch (error) {
-              console.error('Error updating user:', error.message);
-            }
-          };
+          //   try {
+          //     const response = await axios.put(`http://localhost:4000/update-user/${uid}`, {
+          //       uid,
+          //       fname,
+          //       lname,
+          //       email,
+          //       phone
+          //     });
+          //   } catch (error) {
+          //     console.error('Error updating user:', error.message);
+          //   }
+          // };
           
 
 
@@ -60,7 +64,7 @@ const uid=result.map((x)=>x.id)
                     <input type="text" name="lastname" id="lastname"  required placeholder={lname} onChange={(e)=>setForm({...form,lastname:e.target.value})}  />
                     <input type="email" name="emailId" id="emailId"required placeholder={email} onChange={(e)=>setForm({...form,emailId:e.target.value})}  />
                     <input type="text" name="phone Number" id="phonenumber" placeholder={phone}  required onChange={(e)=>setForm(({...form,phonenumber:e.target.value}))} />
-                    <button type='submit' className='submit' onClick={handleUpdate}>Submit</button>
+                    <button type='submit' className='submit' >Submit</button>
                
             </form>
         </div>

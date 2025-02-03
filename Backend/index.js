@@ -77,11 +77,12 @@ app.delete('/delete-user/:id', (req, res) => {
   app.put('/update-user/:id', (req, res) => {
     
     const userId = req.params.id; 
-    const { uid,fname,lname, email,phone } = req.body;          
-    const query = `UPDATE candidates SET first_name = "${fname}",last_name="${lname}", email ="${email}", phone="${phone}"  WHERE id =${uid} `;
+    const {fname,lname, email,phone } = req.body;
+    console.log(req.body.firstname)          
+    const query = `UPDATE candidates SET first_name = "${req.body.firstname}",last_name="${req.body.lastname}", email ="${req.body.emailId}", phone="${req.body.phonenumber}"  WHERE id =${userId} `;
     const values = [fname,lname, email,phone, userId];
          console.log(userId,'userID',req.body)
-         console.log( `UPDATE candidates SET first_name = "${fname}",last_name="${lname}", email ="${email}", phone="${phone}"  WHERE id =${uid} `)
+         console.log( `UPDATE candidates SET first_name = "${fname}",last_name="${lname}", email ="${email}", phone="${phone}"  WHERE id =${userId} `)
     db.query(query, (err, result) => {
       if (err) {
         console.error('Error updating user:', err.message);
