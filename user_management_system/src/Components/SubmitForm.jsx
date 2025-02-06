@@ -10,6 +10,7 @@ export default function SubmitForm() {
             formdata.push(form)
             console.log(formdata);
             axios.post('http://localhost:4000/',form)
+            alert('Data Submitted Succesfully')
         }
   return (
     <div>
@@ -19,11 +20,11 @@ export default function SubmitForm() {
         <div>
             <form action="post" onSubmit={handlechange}>
                 <label>
-                    <input type="text" name="firstname" id="firstname" required onChange={(e)=>setForm({...form,firstname:e.target.value})} placeholder='Enter First Name' />
-                    <input type="text" name="lastname" id="lastname"  required onChange={(e)=>setForm({...form,lastname:e.target.value})} placeholder='Enter last Name' />
-                    <input type="email" name="emailId" id="emailId"required  onChange={(e)=>setForm({...form,emailId:e.target.value})} placeholder='Enter Email Id' />
-                    <input type="text" name="phone Number" id="phonenumber"  required onChange={(e)=>setForm({...form,phonenumber:e.target.value})} placeholder='Enter Phone Number' />
-                    <button type='submit' className='submit' onClick={()=>alert('Data submitted Succesfully')} >Submit</button>
+                    <input type="text" name="firstname" id="firstname"  pattern="^[A-Za-z]+([ ][A-Za-z]+)*$" required onChange={(e)=>setForm({...form,firstname:e.target.value})} placeholder='Enter First Name' />
+                    <input type="text" name="lastname" id="lastname"  pattern="^[A-Za-z]+([ ][A-Za-z]+)*$" required onChange={(e)=>setForm({...form,lastname:e.target.value})} placeholder='Enter last Name' />
+                    <input type="email" name="emailId" id="emailId"   required  onChange={(e)=>setForm({...form,emailId:e.target.value})} placeholder='Enter Email Id' />
+                    <input type="tel" name="phone Number" id="phonenumber" pattern='^[0-9]+$' required onChange={(e)=>setForm({...form,phonenumber:e.target.value})} placeholder='Enter Phone Number' />
+                    <button type='submit' className='submit' >Submit</button>
                    
 
                 </label>
