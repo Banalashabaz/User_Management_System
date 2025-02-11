@@ -13,10 +13,7 @@ export default function User_Management() {
     useEffect(()=>{
         fetch('http://localhost:4000').then((res)=>res.json()).then((data)=> setData(data)).catch((err)=>console.log(err))
     },[data])
-  function handle(id){
-    console.log('handler',data)
-    console.log(id)
-  }
+
 
   const   deleteData=(id)=>{
     try {
@@ -75,8 +72,8 @@ export default function User_Management() {
                          <td>{items.email}</td>
                          <td>{items.phone}</td>
                          <td> 
-                         {console.log(items.id,"uid")}
-                         <Link to={`/update/${items.id}`}  style={{textDecoration:'none',fontSize:'medium',width:'70px'}}className='update' onClick={handle(items.id)}>update</Link>
+                       
+                         <Link to={`/update/${items.id}`}  style={{textDecoration:'none',fontSize:'medium',width:'70px'}}className='update' >update</Link>
                           <button className='delete' onClick={()=>deleteData(items.id)}>delete</button></td>
                          </tr>
                          </>

@@ -20,10 +20,10 @@ export default function SubmitForm() {
         <div>
             <form action="post" onSubmit={handlechange}>
                 <label>
-                    <input type="text" name="firstname" id="firstname"  pattern="^[A-Za-z]+([ ][A-Za-z]+)*$" required onChange={(e)=>setForm({...form,firstname:e.target.value})} placeholder='Enter First Name' />
+                    <input type="text" name="firstname" id="firstname" pattern="^[A-Za-z]+([ ][A-Za-z]+)*$" required onChange={(e)=>setForm({...form,firstname:e.target.value})} placeholder='Enter First Name' />
                     <input type="text" name="lastname" id="lastname"  pattern="^[A-Za-z]+([ ][A-Za-z]+)*$" required onChange={(e)=>setForm({...form,lastname:e.target.value})} placeholder='Enter last Name' />
                     <input type="email" name="emailId" id="emailId"   required  onChange={(e)=>setForm({...form,emailId:e.target.value})} placeholder='Enter Email Id' />
-                    <input type="tel" name="phone Number" id="phonenumber" pattern='^[0-9]+$' required onChange={(e)=>setForm({...form,phonenumber:e.target.value})} placeholder='Enter Phone Number' />
+                    <input type="tel" name="phone Number" id="phonenumber" pattern='^[0-9]+$'maxLength={10} minLength={10} required onChange={(e)=>setForm({...form,phonenumber:e.target.value})} placeholder='Enter Phone Number' />
                     <button type='submit' className='submit' >Submit</button>
                    
 

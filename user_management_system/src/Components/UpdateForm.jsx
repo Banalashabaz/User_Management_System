@@ -3,51 +3,50 @@ import { Link ,useParams} from 'react-router-dom';
 import { useState ,useEffect} from 'react';
 import axios from 'axios';
 export default function UpdateForm() {
-  const [form,setForm]=useState({firstname:'',lastname:'',emailId:'',phonenumber:''})
   const [formdata,setFormData]=useState([])
   const [data,setData]=useState([]);
   const {id}=useParams();
   
-  
-  const result=data.filter((y)=>y.id==id);
-  console.log('result ',result)
-  const uid=result.map((x)=>x.id)
-  const fname=result.map((x)=>x.first_name)
-  const lname=result.map((x)=>x.last_name)
-  const email=result.map((x)=>x.email)
-  const phone=result.map((x)=>x.phone)
-  
- 
+
+  const [form,setForm]=useState({firstname:'',lastname:'',emailId:'',phonenumber:''});
+
+      // form.firstname=fname;
+        
         function handlechange(e){
             e.preventDefault();
             formdata.push(form)
-            console.log(formdata);
-             axios.put(`http://localhost:4000/update-user/${uid}`,form)
-            console.log(form,'form data');
-            console.log(data,'updated Data',id) 
+             axios.put(`http://localhost:4000/update-user/${id}`,form)
+          
 
             alert('Data Updated Succesfully .......')
 }
            useEffect(()=>{
-               fetch('http://localhost:4000/').then((res)=>res.json()).then((data)=>{setData(data)}).catch((err)=>console.log(err))
+               fetch(`http://localhost:4000/data/${id}`).then((res)=>res.json()).then((data)=>{
+                var res=data.filter((s)=>s.id==id);
+                const fnames =res.map((s)=>s.first_name)
+                     
+                 const lnames=res.map((s)=>s.last_name);
+                 const  emails=res.map((s)=>s.email);
+                 const phones=res.map((s)=>s.phone)
+                setForm({...form,firstname:fnames,lastname:lnames,emailId:emails,phonenumber:phones})
+               }).catch((err)=>console.log(err))
             },[data])
  
 
     
-
+console.log(form)
 
   return (
     <div>
       <Link to='/update'></Link>
        <h1>Update Details</h1>
-      
         <div>
             <form action="post" onSubmit={handlechange} className='updateform'>
 
-                    <input type="text" name="firstname" id="firstname"    pattern="^[A-Za-z]+([-'][A-Za-z]+)*$" placeholder={fname}  onChange={(e)=>setForm({...form,firstname:e.target.value})}  />
-                    <input type="text" name="lastname" id="lastname"   pattern="^[A-Za-z]+([-'][A-Za-z]+)*$"   placeholder={lname}  onChange={(e)=>setForm({...form,lastname:e.target.value})}  />
-                    <input type="email" name="emailId" id="emailId"   placeholder={email}  onChange={(e)=>setForm({...form,emailId:e.target.value})} />
-                    <input type="text" name="phone Number" id="phonenumber" pattern='^[0-9]+$'  placeholder={phone} minLength={10} maxLength={10}  onChange={(e)=>setForm({...form,phonenumber:e.target.value})} />
+                    <input type="text" name="firstname" id="firstname" value={form.firstname}   pattern="^[A-Za-z]+([-'][A-Za-z]+)*$"  onChange={(e)=>setForm({...form,firstname:e.target.value})}  />
+                    <input type="text" name="lastname" id="lastname"   pattern="^[A-Za-z]+([-'][A-Za-z]+)*$"  value={form.lastname}  onChange={(e)=>setForm({...form,lastname:e.target.value})}  />
+                    <input type="email" name="emailId" id="emailId"   value={form.emailId}   onChange={(e)=>setForm({...form,emailId:e.target.value})} />
+                    <input type="text" name="phone Number" id="phonenumber" value={form.phonenumber} pattern='^[0-9]+$'  minLength={10} maxLength={10}  onChange={(e)=>setForm({...form,phonenumber:e.target.value})} />
                     <button type='submit' className='submit' >Submit</button>
                
             </form>

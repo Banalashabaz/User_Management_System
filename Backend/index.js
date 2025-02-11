@@ -35,6 +35,17 @@ app.get('/', (req, res) => {
     });
 });
 
+app.get('/data/:id', (req, res) => {
+  const query = `SELECT * from  candidates  WHERE id="${req.params.id}"`; 
+  db.query(query, (err, results) => {
+      if (err) {
+          console.error('Error executing query:', err.message);
+          return res.status(500).json({ error: 'Database query failed' });
+      }
+      res.json(results); 
+
+  });
+});
 
 
 
